@@ -60,6 +60,9 @@ function stardate_add_filters_actions_hooks()
     // Creates the stardate shortcode 
     add_shortcode('stardate','stardate_shortcode');
     
+    // When plugins is activated, it should set some sensible default values!!
+    register_activation_hook( __FILE__, 'stardate_activate' );
+    
     // When plugin is deactivated, it should clean up after itself!!
     register_deactivation_hook( __FILE__, 'stardate_deactivate' );
 
@@ -245,7 +248,7 @@ function stardate_post($post_id, $post)
     }    
 }
 
-function unstardate_post($post_id, $post)
+function unstardate_post($post_id, $post=NULL)
 {
     /**
      * Unasociate stardate with the post
@@ -256,6 +259,23 @@ function unstardate_post($post_id, $post)
     
     wp_delete_object_term_relationships( $post_id, 'stardate' );
 }
+
+function unstardate_all_posts()
+{
+    /**
+     * Unassociates stardates with *ALL* posts
+     *
+     */
+
+    foreach (get_posts() as $post)
+    {
+        if ($post->ID)
+        {
+            unstardate_post($post->ID);
+        }
+    }
+}
+
 
 function stardate_all_posts()
 {
@@ -288,16 +308,33 @@ function stardate_all_posts()
     return array ($successes, $failures);
 }
 
+function stardate_activate()
+{
+    /**
+     * Activation hook, set default values for params.
+     * 
+     */
+    add_option('prefix', 'Stardate');
+    add_option('style', 'Classic');
+    add_option('override_date', 1);
+    
+}
+
+
+
 function stardate_deactivate()
 {
     /**
      * Remove all stuff added by this hook from the posts, settings etc
      * 
      */
-    //TODO
-    //  unstardate_all_posts() 
-    //  delete_option( $option_name );
-    //   
+    delete_option('prefix');
+    delete_option('style');
+    delete_option('override_date');
+    delete_option('override_get_date');
+    delete_option('stardate-settings');
+    
+    unstardate_all_posts();
 }
 
 ?>

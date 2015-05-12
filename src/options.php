@@ -25,11 +25,11 @@ function stardate_create_menu()
 function register_stardate_settings()
 {
     //register our settings
-    register_setting( 'stardate-settings', 'prefix', 'stardate_validate_string' );
-    register_setting( 'stardate-settings', 'style', 'stardate_validate_style' );
-    register_setting( 'stardate-settings', 'override_date', 'stardate_validate_checkbox' );
-    register_setting( 'stardate-settings', 'override_get_date', 'stardate_validate_checkbox' );
-    register_setting( 'stardate-settings', 'override_time', 'stardate_validate_checkbox' );
+    register_setting( 'stardate-settings', 'stardate_prefix', 'stardate_validate_string' );
+    register_setting( 'stardate-settings', 'stardate_style', 'stardate_validate_style' );
+    register_setting( 'stardate-settings', 'stardate_override_date', 'stardate_validate_checkbox' );
+    register_setting( 'stardate-settings', 'stardate_override_get_date', 'stardate_validate_checkbox' );
+    register_setting( 'stardate-settings', 'stardate_override_time', 'stardate_validate_checkbox' );
 }
 
 function stardate_validate_string( $input )
@@ -95,15 +95,15 @@ function stardate_settings_page()
      <table class="form-table">
         <tr valign="top">
           <th scope="row">Stardate Prefix</th>
-          <td><input type="text" name="prefix" value="<?php echo esc_attr( get_option('prefix') ); ?>" /></td>
+          <td><input type="text" name="stardate_prefix" value="<?php echo esc_attr( get_option('stardate_prefix') ); ?>" /></td>
         </tr>
         <tr valign="top">
           <th scope="row">Style</th>
-          <?php  $s = get_option('style') ?>
+          <?php  $s = get_option('stardate_style') ?>
           <td>
-            <input name="style" type="radio" value="Classic" <?php checked( 'Classic', get_option( 'style' ) ); ?> /> Classic (trekguide) <code><?php echo stardate_now('Classic')?></code>
-            <input name="style" type="radio" value="XI" <?php checked( 'XI', get_option( 'style' ) ); ?> /> XI (trekguide) <code><?php echo stardate_now('XI')?></code>
-            <input name="style" type="radio" value="XI_wikipedia" <?php checked( 'XI_wikipedia', get_option( 'style' ) ); ?> /> XI (wikipedia) <code><?php echo stardate_now('XI_wikipedia')?></code>
+            <input name="stardate_style" type="radio" value="Classic" <?php checked( 'Classic', get_option( 'stardate_style' ) ); ?> /> Classic (trekguide) <code><?php echo stardate_now('Classic')?></code>
+            <input name="stardate_style" type="radio" value="XI" <?php checked( 'XI', get_option( 'stardate_style' ) ); ?> /> XI (trekguide) <code><?php echo stardate_now('XI')?></code>
+            <input name="stardate_style" type="radio" value="XI_wikipedia" <?php checked( 'XI_wikipedia', get_option( 'stardate_style' ) ); ?> /> XI (wikipedia) <code><?php echo stardate_now('XI_wikipedia')?></code>
           </td>
         </tr>
         <tr>
@@ -115,19 +115,19 @@ function stardate_settings_page()
         <tr valign="top">
           <th scope="row">Override the_date</th>
           <td>
-            <input name="override_date" type="checkbox" value="1" <?php checked( '1', get_option( 'override_date' ) ); ?> />
+            <input name="stardate_override_date" type="checkbox" value="1" <?php checked( '1', get_option( 'stardate_override_date' ) ); ?> />
           </td>
         </tr>
           <tr valign="top">
           <th scope="row">Override get_the_date</th>
           <td>
-            <input name="override_get_date" type="checkbox" value="1" <?php checked( '1', get_option( 'override_get_date' ) ); ?> />
+            <input name="stardate_override_get_date" type="checkbox" value="1" <?php checked( '1', get_option( 'stardate_override_get_date' ) ); ?> />
           </td>
         </tr>
           <tr valign="top">
             <th scope="row">Override the_time</th>
             <td>
-              <input name="override_time" type="checkbox" value="1" <?php checked( '1', get_option( 'override_time' ) ); ?> />
+              <input name="stardate_override_time" type="checkbox" value="1" <?php checked( '1', get_option( 'stardate_override_time' ) ); ?> />
             </td>
           </tr>          
      </table>

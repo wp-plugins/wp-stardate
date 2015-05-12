@@ -33,19 +33,19 @@ function stardate_add_filters_actions_hooks()
     add_filter('post_link', 'stardate_permalink', 10, 3);
     add_filter('post_type_link', 'stardate_permalink', 10, 3);
 
-    if ( get_option( 'override_get_date' ) == 1 )
+    if ( get_option( 'stardate_override_get_date' ) == 1 )
     {
         // Should get_date func. be filtered??
         add_filter('get_the_date', 'get_the_stardate', 10, 3);
     }
 
-    if ( get_option( 'override_date' ) == 1 )
+    if ( get_option( 'stardate_override_date' ) == 1 )
     {
         // Should dates be filtered??
         add_filter('the_date', 'the_stardate', 10, 3);
     }
 
-    if ( get_option( 'override_time' ) == 1 )
+    if ( get_option( 'stardate_override_time' ) == 1 )
     {
         // Should the_time  be filtered??
         add_filter('the_time', 'the_stardate', 10, 3);
@@ -197,8 +197,8 @@ function calculate_stardate($date, $style=NULL)
 
     $stardate;
 
-    if (empty($style)) $style =  get_option('style');
-    $prefix = get_option('prefix');
+    if (empty($style)) $style =  get_option('stardate_style');
+    $prefix = get_option('stardate_prefix');
     
     // TODO: add TNG
     
@@ -314,9 +314,9 @@ function stardate_activate()
      * Activation hook, set default values for params.
      * 
      */
-    add_option('prefix', 'Stardate');
-    add_option('style', 'Classic');
-    add_option('override_date', 1);
+    add_option('stardate_prefix', 'Stardate');
+    add_option('stardate_style', 'Classic');
+    add_option('stardate_override_date', 1);
     
 }
 
@@ -328,11 +328,11 @@ function stardate_deactivate()
      * Remove all stuff added by this hook from the posts, settings etc
      * 
      */
-    delete_option('prefix');
-    delete_option('style');
-    delete_option('override_date');
-    delete_option('override_get_date');
-    delete_option('stardate-settings');
+    delete_option('stardate_prefix');
+    delete_option('stardate_style');
+    delete_option('stardate_override_date');
+    delete_option('stardate_override_get_date');
+    delete_option('stardate_override_time');
     
     unstardate_all_posts();
 }

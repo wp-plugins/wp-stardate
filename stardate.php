@@ -88,7 +88,6 @@ function stardate_init()
     }
 }
 
-
 function stardate_permalink($permalink, $post_id, $leavename)
 {
     /**
@@ -225,7 +224,7 @@ function calculate_stardate($date, $style=NULL)
         */
         $yy = (int)mysql2date('Y', $date) - 1900;
         $mm = mysql2date('m', $date);
-        $stardate = sprintf("%s%s.%02s", $yy, $mm, mysql2date("d", $date));    
+        $stardate = sprintf("%s%s.%02s", $yy, $mm, mysql2date("d", $date));
     }
 
     return implode(' ', array($prefix, $stardate));
@@ -276,7 +275,6 @@ function unstardate_all_posts()
     }
 }
 
-
 function stardate_all_posts()
 {
     /**
@@ -320,8 +318,6 @@ function stardate_activate()
     
 }
 
-
-
 function stardate_deactivate()
 {
     /**
@@ -346,19 +342,7 @@ function stardate_deactivate()
     foreach ( $terms as $value ) {
         wp_delete_term( $value, 'stardate' );
     }
-    /*
-    // Remove the taxonomies from the wordpress database!!!
-    $query = $wpdb->prepare("
-            DELETE t.*, tt.* 
-              FROM $wpdb->terms
-                AS t 
-        INNER JOIN $wpdb->term_taxonomy
-                AS tt 
-                ON t.term_id = tt.term_id 
-        	 WHERE tt.taxonomy = 'stardate'");
-    
-    //$wpdb-> ${wpdb->terms}
-    */
+
 }
 
 ?>

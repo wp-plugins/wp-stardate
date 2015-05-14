@@ -2,7 +2,7 @@
 Contributors: doddo
 Tags: dates, stardate
 Requires at least: 4.0.1
-Tested up to: 4.0.1
+Tested up to: 4.2.2
 Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -37,6 +37,9 @@ The [stardate](https://wordpress.org/plugins/stardate/) plugin by croakingtoad i
 
 
 == Changelog ==
+
+= 1.0 =
+Initial release.
 
 = 0.1 =
 First beta version with potential bugs in it.

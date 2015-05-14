@@ -328,6 +328,12 @@ function stardate_deactivate()
      * Remove all stuff added by this hook from the posts, settings etc
      * 
      */
+    
+    if ( ! is_admin() )
+    {
+        return;
+    }
+    
     delete_option('stardate_prefix');
     delete_option('stardate_style');
     delete_option('stardate_override_date');
@@ -335,6 +341,24 @@ function stardate_deactivate()
     delete_option('stardate_override_time');
     
     unstardate_all_posts();
+    
+    $terms = get_terms( 'stardate', array( 'fields' => 'ids', 'hide_empty' => false ) );
+    foreach ( $terms as $value ) {
+        wp_delete_term( $value, 'stardate' );
+    }
+    /*
+    // Remove the taxonomies from the wordpress database!!!
+    $query = $wpdb->prepare("
+            DELETE t.*, tt.* 
+              FROM $wpdb->terms
+                AS t 
+        INNER JOIN $wpdb->term_taxonomy
+                AS tt 
+                ON t.term_id = tt.term_id 
+        	 WHERE tt.taxonomy = 'stardate'");
+    
+    //$wpdb-> ${wpdb->terms}
+    */
 }
 
 ?>

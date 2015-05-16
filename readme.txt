@@ -13,13 +13,13 @@ Add stardates to your wordpress weblog
 
 A powerful versitale stardate plugin with a wide array of functionalities for integrating stardates with your wordpress blog.
 
-* URL `%stardate%` rewrite, like `/stardate-11504-20/title-goes-here` 
-* filter various date functions, to have them display stardate instead, or filter nothing at all, and use the...
-* `<?php the_stardate() ?>` function inside of your themes, to get posts stardate.
-* approximate stardate based on several different formulas and variants and sources (like trekguide and wikipedia), including XI (for modern movies) as well as Classic (from TNG, VOY ...)
-* shortcodes, [stardate] will expand to the current timestamp in stardate fmt.
+* URL `%stardate%` permalink rewrite support for posts.
+* Filter various date functions, to have them display stardate instead, or filter nothing at all, and use the...
+* `<?php the_stardate() ?>` function (or `<?pgp get_the_stardate() ?>`) inside of your themes, to get posts stardate.
+* Aapproximate stardate based on several different formulas and variants and sources (like trekguide and wikipedia), including XI (for modern movies) as well as Classic (from TNG, VOY ...).
+* Shortcodes: `[stardate]` will expand to the current timestamp in stardate fmt.
 
-The [stardate](https://wordpress.org/plugins/stardate/) plugin by croakingtoad is supported to wordpress 3.0.5 and is not updated in five years. Therefore this plugin reincorporates the features of that stardate plugin and adds more functionality besides.
+The [stardate](https://wordpress.org/plugins/stardate/) plugin by croakingtoad is supported to wordpress 3.0.5, and has not been updated in five years. Therefore this plugin reincorporates the features of that stardate plugin and adds more functionality besides.
 
 
 == Installation ==

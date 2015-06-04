@@ -219,8 +219,8 @@ function calculate_stardate($date, $style=NULL)
          */
         $stardate = mysql2date("Y.z", $date);
     } elseif ($style == 'SOL') {
-        /* Represent the current date in YYMM.DD format, where "YY" is the current year minus 1900,
-         * MM is the current month (01-12), and DD is the current day of the month (01-31).
+        /* 
+         * Added from comment by MartinSayles, 
         */
         $yy = mysql2date("Y", $date);
         $day_of_year = mysql2date("z", $date);
@@ -235,7 +235,7 @@ function calculate_stardate($date, $style=NULL)
         }
 
         $dd =   $day_of_year / 365.2422 * 1000;
-        $ff = ($dd - (int)$dd) * 100;
+        $ff = ($dd - (int)$dd) * 100; // TODO: Fix this later
         $stardate = sprintf("%s%03s.%01s", $yy, (int)$dd, (int)$ff);
     } else {
         /* Represent the current date in YYMM.DD format, where "YY" is the current year minus 1900,

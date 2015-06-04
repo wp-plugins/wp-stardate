@@ -85,14 +85,6 @@ function stardate_init()
             'rewrite' => TRUE
             )
         );
-        register_taxonomy(
-                'stardate-parent',
-                'post',
-                array(
-          'hirarchical' => TRUE 
-                        
-                  )
-        );
     }
 }
 

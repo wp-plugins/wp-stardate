@@ -85,6 +85,14 @@ function stardate_init()
             'rewrite' => TRUE
             )
         );
+        register_taxonomy(
+                'stardate-parent',
+                'post',
+                array(
+          'hirarchical' => TRUE 
+                        
+                  )
+        );
     }
 }
 
@@ -218,6 +226,25 @@ function calculate_stardate($date, $style=NULL)
          *  Star Trek Into Darkness begins on stardate 2259.55, or February 24, 2259
          */
         $stardate = mysql2date("Y.z", $date);
+    } elseif ($style == 'SOL') {
+        /* Represent the current date in YYMM.DD format, where "YY" is the current year minus 1900,
+         * MM is the current month (01-12), and DD is the current day of the month (01-31).
+        */
+        $yy = mysql2date("Y", $date);
+        $day_of_year = mysql2date("z", $date);
+        
+        if ($day_of_year > 143.9)
+        {
+            $day_of_year -= 143.9;
+            $yy -= 1922;
+        } else {
+            $day_of_year +=  221.3422;
+            $yy -= 1923;
+        }
+
+        $dd =   $day_of_year / 365.2422 * 1000;
+        $ff = ($dd - (int)$dd) * 100;
+        $stardate = sprintf("%s%03s.%01s", $yy, (int)$dd, (int)$ff);
     } else {
         /* Represent the current date in YYMM.DD format, where "YY" is the current year minus 1900,
          * MM is the current month (01-12), and DD is the current day of the month (01-31).

@@ -60,7 +60,7 @@ function stardate_validate_style( $input )
      *
      * @var string $input the input to validate
      */
-    return ( in_array($input, array('XI', 'XI_wikipedia')) ? $input : 'Classic');
+    return ( in_array($input, array('XI', 'XI_wikipedia', 'SOL')) ? $input : 'Classic');
 }
 
 function stardate_admin_stardate_all_posts()
@@ -104,6 +104,7 @@ function stardate_settings_page()
             <input name="stardate_style" type="radio" value="Classic" <?php checked( 'Classic', get_option( 'stardate_style' ) ); ?> /> Classic (trekguide) <code><?php echo stardate_now('Classic')?></code>
             <input name="stardate_style" type="radio" value="XI" <?php checked( 'XI', get_option( 'stardate_style' ) ); ?> /> XI (trekguide) <code><?php echo stardate_now('XI')?></code>
             <input name="stardate_style" type="radio" value="XI_wikipedia" <?php checked( 'XI_wikipedia', get_option( 'stardate_style' ) ); ?> /> XI (wikipedia) <code><?php echo stardate_now('XI_wikipedia')?></code>
+            <input name="stardate_style" type="radio" value="SOL" <?php checked( 'SOL', get_option( 'stardate_style' ) ); ?> /> StarTrek Online (SOL) <code><?php echo stardate_now('SOL')?></code>
           </td>
         </tr>
         <tr>
